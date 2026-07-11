@@ -3,6 +3,14 @@ import sys
 from loguru import logger
 
 
+def _compact_log_format(record):
+    """Return the compact format with the full Loguru level name."""
+    return (
+        "{time:YYYY-MM-DD HH:mm:ss} | {level} | "
+        "{name}:{function}:{line} | {message}\n{exception}"
+    )
+
+
 def configure_logging():
     """Configure loguru for console and file logging.
 
@@ -15,8 +23,14 @@ def configure_logging():
     log_level = os.environ.get("LOG_LEVEL", "INFO")
     log_file = os.environ.get("LOG_FILE", "app.log")
     logger.remove()
-    logger.add(sys.stderr, level=log_level)
-    logger.add(log_file, level="DEBUG", rotation="50 KB", retention=1)
+    logger.add(sys.stderr, level=log_level, format=_compact_log_format)
+    logger.add(
+        log_file,
+        level="DEBUG",
+        format=_compact_log_format,
+        rotation="50 KB",
+        retention=1,
+    )
 
 
 @logger.catch
