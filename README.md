@@ -32,6 +32,10 @@ uv run python -m second_brain
 
 Use \`uv run --env-file .env\` to load the development environment explicitly; environment files are not auto-loaded.
 
+Console and file logs use the format \`YYYY-MM-DD HH:mm:ss | LEVEL | message\`.
+Timestamps omit milliseconds, and log levels are written in full (for example,
+\`INFO\` and \`WARNING\`).
+
 ## Testing
 
 \`\`\`bash

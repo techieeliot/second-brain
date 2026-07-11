@@ -2,6 +2,8 @@ import sys
 
 from loguru import logger
 
+LOG_FORMAT = "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+
 
 def configure_logging():
     """Configure loguru for console and file logging.
@@ -15,8 +17,14 @@ def configure_logging():
     log_level = os.environ.get("LOG_LEVEL", "INFO")
     log_file = os.environ.get("LOG_FILE", "app.log")
     logger.remove()
-    logger.add(sys.stderr, level=log_level)
-    logger.add(log_file, level="DEBUG", rotation="50 KB", retention=1)
+    logger.add(sys.stderr, level=log_level, format=LOG_FORMAT)
+    logger.add(
+        log_file,
+        level="DEBUG",
+        format=LOG_FORMAT,
+        rotation="50 KB",
+        retention=1,
+    )
 
 
 @logger.catch
