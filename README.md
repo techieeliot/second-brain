@@ -32,9 +32,9 @@ uv run python -m second_brain
 
 Use \`uv run --env-file .env\` to load the development environment explicitly; environment files are not auto-loaded.
 
-Console and file logs use the compact format \`YYYY-MM-DD HH:mm:ss | LVL | module:function:line | message\`.
-Timestamps omit milliseconds. Standard Loguru levels use three-letter labels
-(such as \`INF\` and \`WRN\`), while custom levels retain their full names.
+Console and file logs use the compact format \`YYYY-MM-DD HH:mm:ss | LEVEL | module:function:line | message\`.
+Timestamps omit milliseconds. Loguru levels use their full names, such as
+\`INFO\` and \`WARNING\`, including custom levels.
 
 ## Testing
 

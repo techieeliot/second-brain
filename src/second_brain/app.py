@@ -2,23 +2,11 @@ import sys
 
 from loguru import logger
 
-STANDARD_LEVEL_LABELS = {
-    "TRACE": "TRC",
-    "DEBUG": "DBG",
-    "INFO": "INF",
-    "SUCCESS": "SUC",
-    "WARNING": "WRN",
-    "ERROR": "ERR",
-    "CRITICAL": "CRT",
-}
-
 
 def _compact_log_format(record):
-    """Return the compact format with a label derived from the log level."""
-    level_name = record["level"].name
-    record["extra"]["level_label"] = STANDARD_LEVEL_LABELS.get(level_name, level_name)
+    """Return the compact format with the full Loguru level name."""
     return (
-        "{time:YYYY-MM-DD HH:mm:ss} | {extra[level_label]} | "
+        "{time:YYYY-MM-DD HH:mm:ss} | {level} | "
         "{name}:{function}:{line} | {message}\n{exception}"
     )
 

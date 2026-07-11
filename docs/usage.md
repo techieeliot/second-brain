@@ -37,15 +37,14 @@ Copy \`.env.example\` to \`.env\` for development defaults, then run with \`uv r
 Both console and file logs use the following compact format:
 
 \`\`\`text
-YYYY-MM-DD HH:mm:ss | LVL | module:function:line | message
+YYYY-MM-DD HH:mm:ss | LEVEL | module:function:line | message
 \`\`\`
 
 For example:
 
 \`\`\`text
-2026-07-11 14:32:08 | INF | second_brain.app:main:59 | Hello from second_brain!
+2026-07-11 14:32:08 | INFO | module:function:line | Hello from second_brain!
 \`\`\`
 
-Timestamps do not include milliseconds. Standard Loguru levels use the labels
-\`TRC\`, \`DBG\`, \`INF\`, \`SUC\`, \`WRN\`, \`ERR\`, and \`CRT\`; custom
-levels retain their full names.
+Timestamps do not include milliseconds. Loguru levels use their full names,
+including custom levels.

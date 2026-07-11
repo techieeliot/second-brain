@@ -19,29 +19,21 @@ def test_main_logs_greeting(capfd):
     assert "Hello from second_brain!" in captured.err
 
 
-def test_standard_levels_use_compact_labels(capfd, monkeypatch):
+def test_standard_levels_use_full_names(capfd, monkeypatch):
     monkeypatch.setenv("LOG_LEVEL", "TRACE")
     configure_logging()
 
-    levels_and_labels = [
-        ("TRACE", "TRC"),
-        ("DEBUG", "DBG"),
-        ("INFO", "INF"),
-        ("SUCCESS", "SUC"),
-        ("WARNING", "WRN"),
-        ("ERROR", "ERR"),
-        ("CRITICAL", "CRT"),
-    ]
-    for level, _label in levels_and_labels:
+    levels = ["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
+    for level in levels:
         message = f"message-{level.lower()}"
         logger.log(level, message)
 
     lines = capfd.readouterr().err.splitlines()
-    assert len(lines) == len(levels_and_labels)
-    for line, (level, label) in zip(lines, levels_and_labels, strict=True):
+    assert len(lines) == len(levels)
+    for line, level in zip(lines, levels, strict=True):
         match = COMPACT_LOG_PATTERN.fullmatch(line)
         assert match is not None
-        assert match.group("level") == label
+        assert match.group("level") == level
         assert match.group("source").startswith("tests.test_app:")
         assert match.group("message") == f"message-{level.lower()}"
 
@@ -74,7 +66,7 @@ def test_console_and_file_use_compact_output(capfd, tmp_path, monkeypatch):
     for line in (console_line, file_line):
         match = COMPACT_LOG_PATTERN.fullmatch(line)
         assert match is not None
-        assert match.group("level") == "INF"
+        assert match.group("level") == "INFO"
         assert match.group("source").startswith("tests.test_app:")
         assert match.group("message") == "compact-output"
         assert not re.search(r"\d{2}:\d{2}:\d{2}\.\d+", line)
@@ -84,11 +76,14 @@ def test_sink_configuration_is_preserved(monkeypatch):
     log_file = "/tmp/preserved.log"
     monkeypatch.setenv("LOG_LEVEL", "WARNING")
     monkeypatch.setenv("LOG_FILE", log_file)
+    remove_sink = Mock()
     add_sink = Mock()
+    monkeypatch.setattr("second_brain.app.logger.remove", remove_sink)
     monkeypatch.setattr("second_brain.app.logger.add", add_sink)
 
     configure_logging()
 
+    remove_sink.assert_called_once_with()
     assert add_sink.call_count == 2
     console_call, file_call = add_sink.call_args_list
     assert console_call.args == (sys.stderr,)
