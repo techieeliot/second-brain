@@ -38,4 +38,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
-  - API Reference: api.md
+  - API Reference: REF-001-api-reference.md
+  - Project Standards:
+      - Documentation: GUIDE-001-docs-standards.md
+      - AI Prompting: GUIDE-002-ai-prompting.md
+      - Code Review: GUIDE-003-code-review.md
+      - Expert Panel: SPEC-001-expert-panel.md
