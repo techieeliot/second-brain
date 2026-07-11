@@ -2,7 +2,25 @@ import sys
 
 from loguru import logger
 
-LOG_FORMAT = "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+STANDARD_LEVEL_LABELS = {
+    "TRACE": "TRC",
+    "DEBUG": "DBG",
+    "INFO": "INF",
+    "SUCCESS": "SUC",
+    "WARNING": "WRN",
+    "ERROR": "ERR",
+    "CRITICAL": "CRT",
+}
+
+
+def _compact_log_format(record):
+    """Return the compact format with a label derived from the log level."""
+    level_name = record["level"].name
+    record["extra"]["level_label"] = STANDARD_LEVEL_LABELS.get(level_name, level_name)
+    return (
+        "{time:YYYY-MM-DD HH:mm:ss} | {extra[level_label]} | "
+        "{name}:{function}:{line} | {message}\n{exception}"
+    )
 
 
 def configure_logging():
@@ -17,11 +35,11 @@ def configure_logging():
     log_level = os.environ.get("LOG_LEVEL", "INFO")
     log_file = os.environ.get("LOG_FILE", "app.log")
     logger.remove()
-    logger.add(sys.stderr, level=log_level, format=LOG_FORMAT)
+    logger.add(sys.stderr, level=log_level, format=_compact_log_format)
     logger.add(
         log_file,
         level="DEBUG",
-        format=LOG_FORMAT,
+        format=_compact_log_format,
         rotation="50 KB",
         retention=1,
     )
