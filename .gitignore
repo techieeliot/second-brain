@@ -187,6 +187,7 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Project-specific files
+.DS_Store
 *.log
 site/
 htmlcov/
