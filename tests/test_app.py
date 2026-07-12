@@ -41,6 +41,39 @@ def test_show_rejects_missing_note(tmp_path, monkeypatch):
     assert "No notes found" in result.output
 
 
+def test_new_converts_literal_newlines_to_markdown_lines(tmp_path, monkeypatch):
+    monkeypatch.setenv("SECOND_BRAIN_NOTES_DIR", str(tmp_path))
+
+    result = CliRunner().invoke(main, ["new", r"# Workshop\n\n## Notes"])
+
+    assert result.exit_code == 0
+    note = next(tmp_path.glob("*.md"))
+    assert note.read_text() == "# Workshop\n\n## Notes"
+
+
+def test_new_preserves_real_newlines_and_other_backslashes(tmp_path, monkeypatch):
+    monkeypatch.setenv("SECOND_BRAIN_NOTES_DIR", str(tmp_path))
+    thought = "already\nmultiline \\t \\r " + "\\"
+
+    result = CliRunner().invoke(main, ["new", thought])
+
+    assert result.exit_code == 0
+    note = next(tmp_path.glob("*.md"))
+    assert note.read_text() == thought
+
+
+def test_new_preserves_markdown_unicode_and_success_output(tmp_path, monkeypatch):
+    monkeypatch.setenv("SECOND_BRAIN_NOTES_DIR", str(tmp_path))
+    thought = r"# Café ✨\n\nKeep the Markdown"
+
+    result = CliRunner().invoke(main, ["new", thought])
+
+    assert result.exit_code == 0
+    assert result.output.startswith("Saved: ")
+    note = next(tmp_path.glob("*.md"))
+    assert note.read_text(encoding="utf-8") == "# Café ✨\n\nKeep the Markdown"
+
+
 def test_standard_levels_use_full_names(capfd, monkeypatch):
     monkeypatch.setenv("LOG_LEVEL", "TRACE")
     configure_logging()

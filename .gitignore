@@ -197,3 +197,10 @@ htmlcov/
 
 # LLM Wiki local assets
 raw/assets/
+
+# JavaScript workspace dependencies and generated output
+node_modules/
+.next/
+.turbo/
+dist/
+.sanity/

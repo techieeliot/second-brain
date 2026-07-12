@@ -54,6 +54,14 @@ loaded only when supplied with `--env-file`.
 Notes are saved as plain Markdown files. `list` prints the full storage path
 and numbered filenames; `show NUMBER` prints the selected note.
 
+To create multiline Markdown from the shell, use literal `\\n` sequences in
+the thought. The CLI converts them to real newlines and preserves other
+backslash sequences:
+
+```bash
+uv run second_brain new "# Workshop\\n\\n## Notes"
+```
+
 ## Log Output
 
 Console and file logs use this format:

@@ -40,6 +40,15 @@ Copy \`.env.example\` to \`.env\` for development defaults, then run with
 Notes are saved as plain Markdown files. `list` prints the full storage path
 and numbered filenames; `show NUMBER` prints the selected note.
 
+The `new` command converts literal `\\n` sequences into real newlines, which
+makes multiline Markdown easy to create from a shell command:
+
+```bash
+uv run second_brain new "# Workshop\\n\\n## Notes"
+```
+
+Other backslash sequences are preserved.
+
 Console and file logs use the compact format
 \`YYYY-MM-DD HH:mm:ss | LEVEL | module:function:line | message\`.
 Timestamps omit milliseconds. Loguru levels use their full names, such as

@@ -58,6 +58,11 @@ def _slugify(text):
     return slug or "note"
 
 
+def _normalize_note_text(text):
+    """Convert literal newline escapes while preserving other text."""
+    return text.replace(r"\n", "\n")
+
+
 def _write_note(directory, text):
     """Create a timestamped note without overwriting an existing file."""
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
@@ -93,7 +98,7 @@ def new(thought):
         raise click.ClickException(
             f"Could not prepare note directory {directory}: {error}"
         ) from error
-    path = _write_note(directory, thought)
+    path = _write_note(directory, _normalize_note_text(thought))
     click.echo(f"Saved: {path}")
 
 
