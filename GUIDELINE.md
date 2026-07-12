@@ -1,32 +1,45 @@
 # Project Guidelines
 
+`AGENTS.md` is the canonical instruction file for AI agents. The root
+`README.md` is the canonical user and contributor guide.
+
 ## Knowledge Base
 
-This project follows the persistent-wiki pattern described in the LLM Wiki
-workflow:
+1. Store immutable inputs in `raw/` during ingest.
+2. Synthesize and cross-link durable knowledge in `wiki/`.
+3. Keep `wiki/index.md` as the content catalog.
+4. Keep `wiki/log.md` as an append-only chronological record.
+5. Cite sources near important claims.
+6. Record contradictions and unresolved questions rather than hiding them.
 
-1. Store curated, immutable inputs in raw/.
-2. Synthesize and cross-link durable knowledge in wiki/.
-3. Keep wiki/index.md as the content-oriented catalog.
-4. Keep wiki/log.md as an append-only chronological record.
-5. Cite the raw source or wiki page supporting important claims.
-6. Record contradictions, stale claims, and unresolved questions rather than
-   silently hiding them.
-
-Use lowercase, descriptive, hyphen-separated names for wiki pages. Keep each
-page focused on one topic, entity, source, or analysis.
+Use lowercase, descriptive, hyphen-separated filenames for wiki pages. Keep
+each page focused on one topic, entity, source, or analysis.
 
 ## Python Project
 
-- Use uv, not pip, for project commands and dependency management.
-- Keep runtime code in src/second_brain/.
-- Keep tests in tests/ and run them with pytest.
-- Keep configuration in pyproject.toml.
-- Do not add type hints unless the project requirements change.
-- Run Ruff and pytest before considering a change complete.
+- Use uv for dependency management and project commands.
+- Keep runtime code in `src/second_brain/` and tests in `tests/`.
+- Keep project configuration in `pyproject.toml` and resolved dependencies in
+  `uv.lock`.
+- Preserve the supported Python version and package entry points unless
+  requirements change.
+- Run Ruff, pytest with coverage, and applicable documentation checks before
+  completion.
 
 ## Documentation
 
-Keep README.md focused on setup and usage. Keep docs/ focused on generated
-project documentation. Keep wiki/ focused on accumulated workshop knowledge;
-do not mix the two documentation purposes.
+- Keep installation, usage, environment, testing, and contributor workflows in
+  `README.md`.
+- Keep published standards, the docs index, expert-panel policy, and generated
+  API reference under `docs/`.
+- Keep accumulated source-derived knowledge under `wiki/`.
+- Follow `docs/GUIDE-004-docs-standards.md` for documentation changes.
+- Build documentation with `uv run mkdocs build --strict`.
+
+## AI-Assisted Work
+
+- Follow `docs/GUIDE-002-ai-prompting.md` for agent tasks and external-action
+  safety.
+- Follow `docs/GUIDE-003-code-review.md` for reviews.
+- Use `docs/SPEC-001-expert-panel.md` for significant or cross-domain review
+  routing.

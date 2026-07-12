@@ -1,7 +1,18 @@
+---
+id: GETTING-STARTED
+title: Getting Started
+created: 2026-07-11
+updated: 2026-07-11
+status: active
+scope: second-brain
+type: DOC
+---
+
 # Getting Started
 
 `second-brain` is a Python application and repository-backed knowledge system.
-The project supports Python 3.13 and newer.
+This page provides the shortest path from an installed repository to a running,
+tested project. The project supports Python 3.13 and newer.
 
 ## Installation
 
@@ -70,3 +81,11 @@ Use `uv run python scripts/serve_docs.py` to serve the documentation locally.
 - `AGENTS.md` defines the ingest, query, and lint workflow.
 
 Read `AGENTS.md` before adding or processing sources under `raw/`.
+
+## Related Documentation
+
+- [Documentation standards](GUIDE-004-docs-standards.md)
+- [API reference](REF-001-api-reference.md)
+- [AI prompting standards](GUIDE-002-ai-prompting.md)
+- [Code review standards](GUIDE-003-code-review.md)
+- [Expert panel](SPEC-001-expert-panel.md)

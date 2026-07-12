@@ -30,10 +30,11 @@ uv run python -m second_brain
 | \`LOG_LEVEL\` | \`INFO\` | Console log level |
 | \`LOG_FILE\` | \`app.log\` | Log file path |
 
-Copy \`.env.example\` to \`.env\` for development defaults, then run with \`uv run --env-file .env\`. Environment files are not loaded automatically.
+Copy \`.env.example\` to \`.env\` for development defaults, then run with
+\`uv run --env-file .env\`. Environment files are not loaded automatically.
 
-
-Console and file logs use the compact format \`YYYY-MM-DD HH:mm:ss | LEVEL | module:function:line | message\`.
+Console and file logs use the compact format
+\`YYYY-MM-DD HH:mm:ss | LEVEL | module:function:line | message\`.
 Timestamps omit milliseconds. Loguru levels use their full names, such as
 \`INFO\` and \`WARNING\`, including custom levels.
 
@@ -59,10 +60,20 @@ uv run mkdocs build
 
 ## Project Wiki
 
+- [Documentation home](docs/index.md)
+- [Getting Started](docs/GUIDE-001-getting-started.md)
+- [API reference](docs/REF-001-api-reference.md)
+- [Documentation standards](docs/GUIDE-004-docs-standards.md)
+- [AI prompting standards](docs/GUIDE-002-ai-prompting.md)
+- [Code review standards](docs/GUIDE-003-code-review.md)
+- [Expert panel](docs/SPEC-001-expert-panel.md)
+
 This project follows the LLM Wiki pattern for accumulating workshop knowledge:
 
 - \`raw/\` stores immutable source material.
 - \`wiki/\` stores synthesized, interlinked Markdown pages.
-- \`AGENTS.md\` defines the ingest, query, and lint workflow for maintaining the wiki.
+- \`AGENTS.md\` defines the ingest, query, and lint workflow for maintaining
+  the wiki.
 
-Start with [\`wiki/index.md\`](wiki/index.md), and read [\`AGENTS.md\`](AGENTS.md) before adding or processing sources.
+Start with [\`wiki/index.md\`](wiki/index.md), and read
+[\`AGENTS.md\`](AGENTS.md) before adding or processing sources.

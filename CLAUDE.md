@@ -1,26 +1,12 @@
 # Claude Project Instructions
 
-Follow the project instructions in [AGENTS.md](AGENTS.md). It is the
-canonical schema for the project's LLM-maintained knowledge base.
+Follow [`AGENTS.md`](AGENTS.md) as the canonical repository instruction file.
 
-## Repository Structure
+Use these task-specific standards when applicable:
 
-- Treat [raw/](raw/) as immutable source material.
-- Maintain synthesized, interlinked knowledge in [wiki/](wiki/).
-- Read [wiki/index.md](wiki/index.md) before answering knowledge-base
-  questions.
-- Append ingest, query, and lint activity to [wiki/log.md](wiki/log.md).
+- [`docs/GUIDE-004-docs-standards.md`](docs/GUIDE-004-docs-standards.md)
+- [`docs/GUIDE-002-ai-prompting.md`](docs/GUIDE-002-ai-prompting.md)
+- [`docs/GUIDE-003-code-review.md`](docs/GUIDE-003-code-review.md)
+- [`docs/SPEC-001-expert-panel.md`](docs/SPEC-001-expert-panel.md)
 
-## Python Workflow
-
-- Use uv for dependency management and command execution.
-- Keep application code under src/second_brain/.
-- Run uv run ruff check . and uv run pytest before completing code changes.
-- Preserve the existing pyproject.toml configuration and src layout.
-
-## Change Discipline
-
-- Inspect relevant files before editing.
-- Do not modify or delete files in raw/ during wiki maintenance.
-- Update wiki/index.md when adding or changing wiki pages.
-- Prefer focused changes and add tests for changed application behavior.
+Do not duplicate or override those rules here.
