@@ -11,7 +11,9 @@ This file is the canonical entry point for AI agents working in `second-brain`.
 - Generated API reference: `docs/REF-001-api-reference.md`
 - User and contributor workflow: `README.md`
 
-Use `.agent/skills/expert-panel-reviewer/SKILL.md` for significant architecture, Python, uv, MkDocs, packaging, agent-workflow, or cross-domain reviews.
+Use `.agent/skills/expert-panel-reviewer/SKILL.md` for significant
+architecture, Python, uv, MkDocs, packaging, agent-workflow, or cross-domain
+reviews.
 
 ## Repository Structure
 
@@ -38,11 +40,15 @@ Never rewrite or delete raw sources as part of ingest.
 
 ### Query
 
-Read `wiki/index.md` first, then follow relevant links. Cite wiki pages and raw sources where applicable. Store durable analyses and conclusions in `wiki/` instead of leaving them only in chat history.
+Read `wiki/index.md` first, then follow relevant links. Cite wiki pages and raw
+sources where applicable. Store durable analyses and conclusions in `wiki/`
+instead of leaving them only in chat history.
 
 ### Lint
 
-Check for stale or contradictory claims, orphan pages, missing citations, missing concepts, and unresolved sourcing questions. Record completed health checks in `wiki/log.md`.
+Check for stale or contradictory claims, orphan pages, missing citations,
+missing concepts, and unresolved sourcing questions. Record completed health
+checks in `wiki/log.md`.
 
 ### Wiki Conventions
 
@@ -60,7 +66,8 @@ Check for stale or contradictory claims, orphan pages, missing citations, missin
 - Keep changes focused on the requested outcome.
 - Add or update tests for changed behavior.
 - Update README, docs, and API docstrings when connected behavior changes.
-- Do not expose secrets or commit local environments, logs, caches, generated sites, or local agent memory.
+- Do not expose secrets or commit local environments, logs, caches, generated
+  sites, or local agent memory.
 - Do not perform external writes unless the user explicitly authorizes them.
 
 ## Verification

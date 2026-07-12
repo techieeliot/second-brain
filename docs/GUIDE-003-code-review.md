@@ -27,14 +27,21 @@ an imagined redesign, and report only actionable findings.
 
 ## The Six Gates
 
-| Gate | Review question | Block when | Approve when |
-| --- | --- | --- | --- |
-| Intent | Is the outcome and reason clear? | Unstated context is required | The task or PR is self-contained |
-| Correctness | Do normal and failure paths work? | Errors are silent or contracts regress | Behavior matches requirements |
-| Tests | Do tests prove observable behavior? | Requested behavior is untested | Tests demonstrate the change |
-| Architecture | Is logic in the right module? | Responsibilities scatter or imports become fragile | The smallest coherent change fits existing boundaries |
-| Tooling | Are uv, Python, logging, and MkDocs contracts preserved? | Lockfiles, entry points, versions, or builds conflict | Workflows remain reproducible |
-| Documentation | Are user docs, API docs, and wiki contracts current? | Behavior is undocumented or raw sources changed | Connected docs are accurate and strict MkDocs passes |
+- **Intent:** Is the outcome and reason clear? Block when unstated context is
+  required; approve when the task or PR is self-contained.
+- **Correctness:** Do normal and failure paths work? Block when errors are
+  silent or contracts regress; approve when behavior matches requirements.
+- **Tests:** Do tests prove observable behavior? Block when requested behavior
+  is untested; approve when tests demonstrate the change.
+- **Architecture:** Is logic in the right module? Block when responsibilities
+  scatter or imports become fragile; approve when the smallest coherent change
+  fits existing boundaries.
+- **Tooling:** Are uv, Python, logging, and MkDocs contracts preserved? Block
+  when lockfiles, entry points, versions, or builds conflict; approve when
+  workflows remain reproducible.
+- **Documentation:** Are user docs, API docs, and wiki contracts current? Block
+  when behavior is undocumented or raw sources changed; approve when connected
+  docs are accurate and strict MkDocs passes.
 
 ## Python Review
 

@@ -124,9 +124,11 @@ concerns.
 ### Python change
 
 ```text
-Add the requested behavior under src/second_brain/ using tests-first development.
-Read pyproject.toml, the affected module, and existing tests first. Preserve the
-CLI entry point, logging configuration, and supported Python version. Update user
+Add the requested behavior under src/second_brain/ using tests-first
+development. Read pyproject.toml, the affected module, and existing tests
+first. Preserve the
+CLI entry point, logging configuration, and supported Python version. Update
+user
 and API documentation if behavior changes. Verify pytest with coverage, Ruff,
 and strict MkDocs.
 ```

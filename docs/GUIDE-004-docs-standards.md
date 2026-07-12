@@ -21,15 +21,20 @@ duplicated instructions.
 
 ## Documentation Map
 
-| Location | Purpose | Source-of-truth rule |
-| --- | --- | --- |
-| `README.md` | Canonical user guide, commands, and orientation | Keep complete but scannable; link to `docs/` |
-| `docs/` | Published user and contributor documentation | Must pass `mkdocs build --strict` |
-| `docs/REF-NNN-*.md` | Numbered generated or lookup reference | Code, configuration, or source data remains canonical |
-| `raw/` | Curated source material | Never rewrite or delete during ingest |
-| `wiki/` | Synthesized, interlinked knowledge | Cite relevant raw sources near claims |
-| `AGENTS.md` | Ingest, query, and wiki-lint workflow | Governs `raw/` and `wiki/` changes |
-| `docs/SPEC-001-expert-panel.md` | Significant review policy | Governs expert selection and review |
+- **`README.md`:** Canonical user guide, commands, and orientation. Keep it
+  complete but scannable and link to `docs/`.
+- **`docs/`:** Published user and contributor documentation. It must pass
+  `mkdocs build --strict`.
+- **`docs/REF-NNN-*.md`:** Numbered generated or lookup references. Code,
+  configuration, or source data remains canonical.
+- **`raw/`:** Curated source material. Never rewrite or delete it during
+  ingest.
+- **`wiki/`:** Synthesized, interlinked knowledge. Cite relevant raw sources
+  near claims.
+- **`AGENTS.md`:** Ingest, query, and wiki-lint workflow. It governs `raw/` and
+  `wiki/` changes.
+- **`docs/SPEC-001-expert-panel.md`:** Significant review policy. It governs
+  expert selection and review.
 
 ## Core Rules
 

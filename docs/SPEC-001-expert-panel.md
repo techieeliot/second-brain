@@ -48,13 +48,16 @@ lens into concrete, verifiable feedback.
 
 ## Review Scoring
 
-| Score   | Meaning                                                                        | Reviewer action            |
-| ------- | ------------------------------------------------------------------------------ | -------------------------- |
-| 10/10   | Correct, clear, tested, documented, and aligned with all applicable lenses     | Approve                    |
-| 9/10    | Strong implementation with minor non-blocking gaps                             | Approve with follow-up     |
-| 8/10    | Functional but has meaningful maintainability, test, or documentation concerns | Request changes            |
-| 7/10    | Major correctness, architecture, packaging, or compatibility problems          | Block                      |
-| Below 7 | Unsafe, misleading, or fundamentally unsuitable                                | Block and require redesign |
+- **10/10:** Correct, clear, tested, documented, and aligned with all
+  applicable lenses. **Approve.**
+- **9/10:** Strong implementation with minor non-blocking gaps.
+  **Approve with follow-up.**
+- **8/10:** Functional but with meaningful maintainability, test, or
+  documentation concerns. **Request changes.**
+- **7/10:** Major correctness, architecture, packaging, or compatibility
+  problems. **Block.**
+- **Below 7:** Unsafe, misleading, or fundamentally unsuitable.
+  **Block and require redesign.**
 
 A high score requires evidence. Documentation cannot compensate for incorrect
 code, and passing tests cannot compensate for tests that miss the requested
@@ -198,16 +201,24 @@ Independent packaging and pip counterweight.
   non-portable.
 - Treat packaging metadata as a public contract.
 
-## Routing Table
+## Routing Rules
 
-| Change area                                                         | Primary reviewers                | Add when applicable                                                                                                     |
-| ------------------------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Agent instructions, Codex workflows, tools, permissions, automation | Ryan Lopopolo, Thibault Sottiaux | Brett Cannon for repository structure                                                                                   |
-| Markdown, navigation, MkDocs configuration, plugins, strict builds  | Waylan Limberg                   | Oleg Pidsadnyi for build or packaging effects                                                                           |
-| General Python implementation and refactoring                       | Raymond Hettinger                | Mariatta Wijaya for docs/workflow; Victor Stinner for runtime concerns; Brandt Bucher for language/performance concerns |
-| Imports, entry points, package layout, `pyproject.toml` structure   | Brett Cannon                     | Raymond Hettinger and Paul Moore                                                                                        |
-| uv commands, lockfiles, environments, caching, CI dependency setup  | Charlie Marsh, Zanie Blue        | Paul Moore for standards, Windows, indexes, or build isolation                                                          |
-| Cross-cutting project or build configuration                        | Brett Cannon, Oleg Pidsadnyi     | Charlie Marsh, Zanie Blue, or Waylan Limberg according to impact                                                        |
+- **Agent instructions, Codex workflows, tools, permissions, and automation:**
+  Ryan Lopopolo and Thibault Sottiaux. Add Brett Cannon for repository
+  structure.
+- **Markdown, navigation, MkDocs configuration, plugins, and strict builds:**
+  Waylan Limberg. Add Oleg Pidsadnyi for build or packaging effects.
+- **General Python implementation and refactoring:** Raymond Hettinger. Add
+  Mariatta Wijaya for documentation or workflow, Victor Stinner for runtime
+  concerns, and Brandt Bucher for language or performance concerns.
+- **Imports, entry points, package layout, and `pyproject.toml` structure:**
+  Brett Cannon. Add Raymond Hettinger and Paul Moore.
+- **uv commands, lockfiles, environments, caching, and CI dependencies:**
+  Charlie Marsh and Zanie Blue. Add Paul Moore for standards, Windows,
+  indexes, or build isolation.
+- **Cross-cutting project or build configuration:** Brett Cannon and Oleg
+  Pidsadnyi. Add Charlie Marsh, Zanie Blue, or Waylan Limberg according to
+  impact.
 
 ## Required Panel Composition
 
@@ -264,10 +275,9 @@ request a project-owner decision.
 
 ## Decision Log
 
-| Date       | Decision                                                 | Experts              | Rationale                                                           |
-| ---------- | -------------------------------------------------------- | -------------------- | ------------------------------------------------------------------- |
-| 2026-07-11 | Establish the ranked Codex, MkDocs, Python, and uv panel | All selected experts | Creates a focused review framework for this project's current stack |
-| —          | Add future decisions here                                | —                    | —                                                                   |
+- **2026-07-11 — Establish the ranked panel:** All selected experts. This
+  creates a focused review framework for the project's current stack.
+- Add future decisions here as the panel or routing rules change.
 
 ## Update Policy
 
