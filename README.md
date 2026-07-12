@@ -62,7 +62,7 @@ uv run mkdocs build
 - [Documentation home](docs/index.md)
 - [Getting Started](docs/getting-started.md)
 - [API reference](docs/REF-001-api-reference.md)
-- [Documentation standards](docs/GUIDE-001-docs-standards.md)
+- [Documentation standards](docs/GUIDE-004-docs-standards.md)
 - [AI prompting standards](docs/GUIDE-002-ai-prompting.md)
 - [Code review standards](docs/GUIDE-003-code-review.md)
 - [Expert panel](docs/SPEC-001-expert-panel.md)

@@ -12,7 +12,9 @@ type: GUIDE
 
 ## Purpose
 
-This guide defines evidence-based review for Python, uv, MkDocs, and knowledge-workflow changes in `second-brain`. Review the requested change, not an imagined redesign, and report only actionable findings.
+This guide defines evidence-based review for Python, uv, MkDocs, and
+knowledge-workflow changes in `second-brain`. Review the requested change, not
+an imagined redesign, and report only actionable findings.
 
 ## Review Order
 
@@ -38,25 +40,34 @@ This guide defines evidence-based review for Python, uv, MkDocs, and knowledge-w
 
 Apply the Python panel from [SPEC-001](SPEC-001-expert-panel.md):
 
-- **Raymond Hettinger:** idiomatic, readable code and effective standard-library use.
+- **Raymond Hettinger:** idiomatic, readable code and effective
+  standard-library use.
 - **Brett Cannon:** packages, imports, entry points, and project structure.
-- **Mariatta Wijaya:** contributor usability, documentation, and maintainability.
-- **Victor Stinner:** runtime behavior, diagnostics, resources, and compatibility.
+- **Mariatta Wijaya:** contributor usability, documentation, and
+  maintainability.
+- **Victor Stinner:** runtime behavior, diagnostics, resources, and
+  compatibility.
 - **Brandt Bucher:** modern language features and measured performance concerns.
 
-Check focused responsibilities, precise names, useful public docstrings, explicit exception boundaries, stable imports, Python 3.13 compatibility, and measured performance claims.
+Check focused responsibilities, precise names, useful public docstrings,
+explicit exception boundaries, stable imports, Python 3.13 compatibility, and
+measured performance claims.
 
 ## Tests and Coverage
 
-Tests should assert behavior visible through a public function, CLI output, log sink, file, or documented workflow. Require the requested happy path, relevant boundaries, preserved configuration, and the motivating regression.
+Tests should assert behavior visible through a public function, CLI output, log
+sink, file, or documented workflow. Require the requested happy path, relevant
+boundaries, preserved configuration, and the motivating regression.
 
-Avoid tests coupled only to private implementation details. Prefer real values and temporary paths for local behavior.
+Avoid tests coupled only to private implementation details. Prefer real values
+and temporary paths for local behavior.
 
 ```bash
 uv run pytest --cov
 ```
 
-The coverage floor is 80%. Coverage is a safety signal, not a substitute for meaningful assertions.
+The coverage floor is 80%. Coverage is a safety signal, not a substitute for
+meaningful assertions.
 
 ## Logging Review
 
@@ -72,7 +83,8 @@ When logging changes, verify:
 
 ## uv and Packaging Review
 
-Apply Charlie Marsh and Zanie Blue as direct Astral lenses, adding Paul Moore for standards or compatibility.
+Apply Charlie Marsh and Zanie Blue as direct Astral lenses, adding Paul Moore
+for standards or compatibility.
 
 - `pyproject.toml` and `uv.lock` agree after dependency changes.
 - The `second_brain` script resolves to `second_brain.app:main`.
@@ -83,7 +95,8 @@ Apply Charlie Marsh and Zanie Blue as direct Astral lenses, adding Paul Moore fo
 
 ## MkDocs Review
 
-Apply Waylan Limberg for documentation architecture and Oleg Pidsadnyi for build and compatibility changes.
+Apply Waylan Limberg for documentation architecture and Oleg Pidsadnyi for
+build and compatibility changes.
 
 - Navigation is understandable.
 - Relative links resolve.
@@ -109,9 +122,12 @@ For `raw/`, `wiki/`, or `AGENTS.md` changes:
 
 ## AI-Assisted Review
 
-Follow [GUIDE-002](GUIDE-002-ai-prompting.md). Distinguish model errors from missing context, authentication from authorization, host-terminal behavior from sandbox behavior, and a blocked external action from incomplete prepared work.
+Follow [GUIDE-002](GUIDE-002-ai-prompting.md). Distinguish model errors from
+missing context, authentication from authorization, host-terminal behavior from
+sandbox behavior, and a blocked external action from incomplete prepared work.
 
-Do not accept repeated retries as progress. When an environment cannot perform an authorized external action, require a safe, exact handoff.
+Do not accept repeated retries as progress. When an environment cannot perform
+an authorized external action, require a safe, exact handoff.
 
 ## Finding Format
 
@@ -155,7 +171,7 @@ Review untracked files deliberately and preserve unrelated user work.
 
 ## See Also
 
-- [Documentation standards](GUIDE-001-docs-standards.md)
+- [Documentation standards](GUIDE-004-docs-standards.md)
 - [AI prompting](GUIDE-002-ai-prompting.md)
 - [Expert panel](SPEC-001-expert-panel.md)
 - Root `README.md` - canonical user guide
@@ -163,4 +179,6 @@ Review untracked files deliberately and preserve unrelated user work.
 
 ## Update Policy
 
-Update this guide when verification commands, supported Python versions, packaging, logging contracts, documentation tooling, or the knowledge workflow changes.
+Update this guide when verification commands, supported Python versions,
+packaging, logging contracts, documentation tooling, or the knowledge workflow
+changes.

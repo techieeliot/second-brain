@@ -4,7 +4,7 @@ This file is the canonical entry point for AI agents working in `second-brain`.
 
 ## Project Standards
 
-- Documentation: `docs/GUIDE-001-docs-standards.md`
+- Documentation: `docs/GUIDE-004-docs-standards.md`
 - AI prompting and agent safety: `docs/GUIDE-002-ai-prompting.md`
 - Code review: `docs/GUIDE-003-code-review.md`
 - Expert routing: `docs/SPEC-001-expert-panel.md`

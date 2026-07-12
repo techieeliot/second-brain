@@ -26,7 +26,7 @@ Use lowercase, descriptive, hyphen-separated filenames for wiki pages. Keep each
 - Keep installation, usage, environment, testing, and contributor workflows in `README.md`.
 - Keep published standards, the docs index, expert-panel policy, and generated API reference under `docs/`.
 - Keep accumulated source-derived knowledge under `wiki/`.
-- Follow `docs/GUIDE-001-docs-standards.md` for documentation changes.
+- Follow `docs/GUIDE-004-docs-standards.md` for documentation changes.
 - Build documentation with `uv run mkdocs build --strict`.
 
 ## AI-Assisted Work

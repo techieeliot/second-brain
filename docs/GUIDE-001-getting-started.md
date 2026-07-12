@@ -84,7 +84,7 @@ Read `AGENTS.md` before adding or processing sources under `raw/`.
 
 ## Related Documentation
 
-- [Documentation standards](GUIDE-001-docs-standards.md)
+- [Documentation standards](GUIDE-004-docs-standards.md)
 - [API reference](REF-001-api-reference.md)
 - [AI prompting standards](GUIDE-002-ai-prompting.md)
 - [Code review standards](GUIDE-003-code-review.md)

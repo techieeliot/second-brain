@@ -12,7 +12,9 @@ type: GUIDE
 
 ## Purpose
 
-This guide defines how to give AI agents enough project context to make safe, reviewable changes to `second-brain`. Prompts should state the outcome, scope, constraints, sources of truth, and verification required.
+This guide defines how to give AI agents enough project context to make safe,
+reviewable changes to `second-brain`. Prompts should state the outcome, scope,
+constraints, sources of truth, and verification required.
 
 ## Prompt Contract
 
@@ -34,11 +36,12 @@ A strong task contains six parts:
 | Python behavior and entry points | `pyproject.toml`, `src/second_brain/`, and `tests/` |
 | Installation, execution, and logging | Root `README.md` |
 | Public API | `docs/REF-001-api-reference.md` and Python docstrings |
-| Documentation changes | `docs/GUIDE-001-docs-standards.md` and `mkdocs.yml` |
+| Documentation changes | `docs/GUIDE-004-docs-standards.md` and `mkdocs.yml` |
 | Code review | `docs/GUIDE-003-code-review.md` |
 | Significant expert review | `docs/SPEC-001-expert-panel.md` |
 
-If sources disagree, require the agent to identify the conflict and verify behavior before editing.
+If sources disagree, require the agent to identify the conflict and verify
+behavior before editing.
 
 ## Prompt Template
 
@@ -68,29 +71,38 @@ HANDOFF
 Summarize changed files, verification, assumptions, and remaining risks.
 ```
 
-Include only commands relevant to the task, but require the full suite for cross-cutting changes.
+Include only commands relevant to the task, but require the full suite for
+cross-cutting changes.
 
 ## Project Guardrails
 
 ### Raw sources are immutable
 
-An ingest task may read `raw/` and update `wiki/`, but it must not rewrite or delete source material. Require updates to `wiki/index.md` and `wiki/log.md`.
+An ingest task may read `raw/` and update `wiki/`, but it must not rewrite or
+delete source material. Require updates to `wiki/index.md` and `wiki/log.md`.
 
 ### Repository evidence beats memory
 
-Require agents to inspect current files before making claims about commands, dependencies, APIs, or configuration. External research should use primary or official sources.
+Require agents to inspect current files before making claims about commands,
+dependencies, APIs, or configuration. External research should use primary or
+official sources.
 
 ### Keep external actions explicit
 
-Creating issues, pull requests, releases, messages, or deployments changes external state. State those actions directly. Authentication does not imply authorization, and a successful host-terminal login does not prove an agent sandbox can access the same credentials.
+Creating issues, pull requests, releases, messages, or deployments changes
+external state. State those actions directly. Authentication does not imply
+authorization, and a successful host-terminal login does not prove an agent
+sandbox can access the same credentials.
 
-When an agent cannot perform an external action, prefer a safe handoff: save the prepared artifact and provide one exact user-run command.
+When an agent cannot perform an external action, prefer a safe handoff: save the
+prepared artifact and provide one exact user-run command.
 
 ### Protect secrets and local state
 
 - Never ask an agent to print tokens or `.env` contents.
 - Use `.env.example` for documented names and safe defaults.
-- Do not commit `.env`, `.env.test`, logs, caches, `.venv`, `site/`, or local agent memory.
+- Do not commit `.env`, `.env.test`, logs, caches, `.venv`, `site/`, or local
+  agent memory.
 - State whether generated temporary files should be retained or removed.
 
 ### Preserve project tooling
@@ -103,7 +115,9 @@ When an agent cannot perform an external action, prefer a safe handoff: save the
 
 ### Require evidence, not simulated authority
 
-The expert panel provides lenses, not quotations or endorsements. Require files, test results, official documentation, or observed behavior for blocking concerns.
+The expert panel provides lenses, not quotations or endorsements. Require
+files, test results, official documentation, or observed behavior for blocking
+concerns.
 
 ## Task Examples
 
@@ -158,11 +172,12 @@ evidence. Do not implement fixes unless requested.
 
 ## See Also
 
-- [Documentation standards](GUIDE-001-docs-standards.md)
+- [Documentation standards](GUIDE-004-docs-standards.md)
 - [Code review](GUIDE-003-code-review.md)
 - [Expert panel](SPEC-001-expert-panel.md)
 - Root `README.md` - canonical user guide
 
 ## Update Policy
 
-Update this guide when agent entry points, repository permissions, verification commands, or the knowledge workflow changes.
+Update this guide when agent entry points, repository permissions, verification
+commands, or the knowledge workflow changes.

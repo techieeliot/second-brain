@@ -11,9 +11,13 @@ source: src/second_brain
 
 # API Reference
 
-This reference is generated from the installed `second_brain` package and its Python docstrings. The command-line entry point is `second_brain.app:main`; see the root `README.md` for installation, execution, and configuration.
+This reference is generated from the installed `second_brain` package and its
+Python docstrings. The command-line entry point is `second_brain.app:main`; see
+the root `README.md` for installation, execution, and configuration.
 
-Public API changes must update their docstrings and relevant tests. Review them against [Documentation Standards](GUIDE-001-docs-standards.md) and [Code Review Standards](GUIDE-003-code-review.md).
+Public API changes must update their docstrings and relevant tests. Review them
+against [Documentation Standards](GUIDE-004-docs-standards.md) and [Code Review
+Standards](GUIDE-003-code-review.md).
 
 ::: second_brain
     options:
