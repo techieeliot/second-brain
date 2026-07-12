@@ -2,6 +2,7 @@ import re
 import sys
 from unittest.mock import Mock
 
+from click.testing import CliRunner
 from loguru import logger
 
 from second_brain.app import configure_logging, main
@@ -13,10 +14,31 @@ COMPACT_LOG_PATTERN = re.compile(
 )
 
 
-def test_main_logs_greeting(capfd):
-    main()
-    captured = capfd.readouterr()
-    assert "Hello from second_brain!" in captured.err
+def test_new_list_and_show_notes(tmp_path, monkeypatch):
+    monkeypatch.setenv("SECOND_BRAIN_NOTES_DIR", str(tmp_path / "notes"))
+    runner = CliRunner()
+
+    created = runner.invoke(main, ["new", "My brilliant idea about caching"])
+    assert created.exit_code == 0
+    assert "Saved:" in created.output
+
+    listed = runner.invoke(main, ["list"])
+    assert listed.exit_code == 0
+    assert str(tmp_path / "notes") in listed.output
+    assert "1. " in listed.output
+    assert "my-brilliant-idea-about-caching.md" in listed.output
+
+    shown = runner.invoke(main, ["show", "1"])
+    assert shown.exit_code == 0
+    assert shown.output == "My brilliant idea about caching"
+
+
+def test_show_rejects_missing_note(tmp_path, monkeypatch):
+    monkeypatch.setenv("SECOND_BRAIN_NOTES_DIR", str(tmp_path / "notes"))
+    result = CliRunner().invoke(main, ["show", "1"])
+
+    assert result.exit_code != 0
+    assert "No notes found" in result.output
 
 
 def test_standard_levels_use_full_names(capfd, monkeypatch):

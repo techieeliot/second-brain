@@ -29,6 +29,9 @@ Via the CLI entry point:
 ```bash
 uv run second_brain
 uv run --env-file .env second_brain
+uv run second_brain new "My brilliant idea about caching"
+uv run second_brain list
+uv run second_brain show 1
 ```
 
 Or as a Python module:
@@ -43,9 +46,13 @@ uv run python -m second_brain
 | --- | --- | --- |
 | `LOG_LEVEL` | `INFO` | Console log level |
 | `LOG_FILE` | `app.log` | Log file path |
+| `SECOND_BRAIN_NOTES_DIR` | `~/second_brain` | Markdown note storage |
 
 Copy `.env.example` to `.env` for development defaults. Environment files are
 loaded only when supplied with `--env-file`.
+
+Notes are saved as plain Markdown files. `list` prints the full storage path
+and numbered filenames; `show NUMBER` prints the selected note.
 
 ## Log Output
 

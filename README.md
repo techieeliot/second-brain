@@ -15,6 +15,9 @@ Via the CLI entrypoint:
 \`\`\`bash
 uv run second_brain                          # production defaults
 uv run --env-file .env second_brain          # dev settings
+uv run second_brain new "My brilliant idea about caching"
+uv run second_brain list
+uv run second_brain show 1
 \`\`\`
 
 Or run it as a Python module:
@@ -29,9 +32,13 @@ uv run python -m second_brain
 | --- | --- | --- |
 | \`LOG_LEVEL\` | \`INFO\` | Console log level |
 | \`LOG_FILE\` | \`app.log\` | Log file path |
+| \`SECOND_BRAIN_NOTES_DIR\` | \`~/second_brain\` | Markdown note storage |
 
 Copy \`.env.example\` to \`.env\` for development defaults, then run with
 \`uv run --env-file .env\`. Environment files are not loaded automatically.
+
+Notes are saved as plain Markdown files. `list` prints the full storage path
+and numbered filenames; `show NUMBER` prints the selected note.
 
 Console and file logs use the compact format
 \`YYYY-MM-DD HH:mm:ss | LEVEL | module:function:line | message\`.

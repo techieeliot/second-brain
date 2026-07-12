@@ -32,13 +32,18 @@ markdown_extensions:
   - admonition
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.details
 
 nav:
   - Home: index.md
   - Getting Started: GUIDE-001-getting-started.md
   - API Reference: REF-001-api-reference.md
+  - Application Flowcharts: ARCH-001-app-flowcharts.md
   - Project Standards:
       - Documentation: GUIDE-004-docs-standards.md
       - AI Prompting: GUIDE-002-ai-prompting.md

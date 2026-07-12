@@ -7,6 +7,7 @@ owner: project-maintainers
 experts:
   - Ryan Lopopolo
   - Thibault Sottiaux
+  - Philipp Acsany
   - Waylan Limberg
   - Oleg Pidsadnyi
   - Raymond Hettinger
@@ -94,6 +95,14 @@ workflows.
   failures.
 
 Thibault is confirmed as leading Codex.
+
+#### 3. Philipp Acsany — Agentic Workflows and Instruction
+Primary lens for developer interactions with AI tools, Claude Code workflows, and educational clarity.
+- Optimize codebase patterns for interactive agent environments and developer velocity.
+- Ensure code examples and tutorials maintain high pedagogical value and universal accessibility.
+- Verify that repository structures are easily parsed by both human learners and LLM context windows.
+- Balance algorithmic optimization with readability to prevent cognitive overload for developers.
+- Check that automated pipelines do not introduce fragile styling or design regressions.
 
 ### MkDocs
 
@@ -204,8 +213,9 @@ Independent packaging and pip counterweight.
 ## Routing Rules
 
 - **Agent instructions, Codex workflows, tools, permissions, and automation:**
-  Ryan Lopopolo and Thibault Sottiaux. Add Brett Cannon for repository
-  structure.
+  Ryan Lopopolo and Thibault Sottiaux. Add Philipp Acsany for Claude Code
+  interactions, developer velocity, and education. Add Brett Cannon for
+  repository structure.
 - **Markdown, navigation, MkDocs configuration, plugins, and strict builds:**
   Waylan Limberg. Add Oleg Pidsadnyi for build or packaging effects.
 - **General Python implementation and refactoring:** Raymond Hettinger. Add
@@ -222,8 +232,8 @@ Independent packaging and pip counterweight.
 
 ## Required Panel Composition
 
-- Use Ryan Lopopolo and Thibault Sottiaux for substantive Codex workflow or
-  agent-architecture changes.
+- Use Ryan Lopopolo, Thibault Sottiaux, and Philipp Acsany for substantive
+  Codex workflow or agent-architecture changes.
 - Use Waylan Limberg for MkDocs and documentation architecture.
 - Use all five Python experts for broad Python architecture or project-wide
   maintainability reviews.
@@ -277,6 +287,9 @@ request a project-owner decision.
 
 - **2026-07-11 — Establish the ranked panel:** All selected experts. This
   creates a focused review framework for the project's current stack.
+- **2026-07-12 — Add Philipp Acsany to Codex panel:** Introduce a dedicated
+  lens for developer-facing AI tool usage (Claude Code), technical education
+  quality, and repository onboarding ergonomics.
 - Add future decisions here as the panel or routing rules change.
 
 ## Update Policy

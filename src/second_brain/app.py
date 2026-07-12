@@ -1,5 +1,10 @@
+import re
 import sys
+from datetime import datetime
+from pathlib import Path
 
+import click
+from dotenv import load_dotenv
 from loguru import logger
 
 
@@ -33,11 +38,91 @@ def configure_logging():
     )
 
 
-@logger.catch
-def main():
-    """Run the application.
+def _notes_directory():
+    """Return the configured notes directory, expanded to an absolute path."""
+    import os
 
-    Configures logging and prints a greeting to verify the setup works.
-    """
-    configure_logging()
-    logger.info("Hello from second_brain!")
+    configured = os.environ.get("SECOND_BRAIN_NOTES_DIR", "~/second_brain")
+    return Path(configured).expanduser().resolve()
+
+
+def _note_files():
+    """Return Markdown notes in the configured directory, sorted by filename."""
+    directory = _notes_directory()
+    return sorted(path for path in directory.glob("*.md") if path.is_file())
+
+
+def _slugify(text):
+    """Return a filesystem-friendly slug for a note filename."""
+    slug = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    return slug or "note"
+
+
+def _write_note(directory, text):
+    """Create a timestamped note without overwriting an existing file."""
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+    suffix = 0
+    while True:
+        collision_suffix = "" if suffix == 0 else f"-{suffix}"
+        path = directory / f"{timestamp}-{_slugify(text)}{collision_suffix}.md"
+        try:
+            with path.open("x", encoding="utf-8") as note:
+                note.write(text)
+        except FileExistsError:
+            suffix += 1
+            continue
+        except OSError as error:
+            raise click.ClickException(f"Could not write note: {error}") from error
+        return path
+
+
+@click.group()
+def main():
+    """Create and read plain Markdown notes."""
+    load_dotenv()
+
+
+@main.command()
+@click.argument("thought")
+def new(thought):
+    """Save THOUGHT as a Markdown note."""
+    directory = _notes_directory()
+    try:
+        directory.mkdir(parents=True, exist_ok=True)
+    except OSError as error:
+        raise click.ClickException(
+            f"Could not prepare note directory {directory}: {error}"
+        ) from error
+    path = _write_note(directory, thought)
+    click.echo(f"Saved: {path}")
+
+
+@main.command(name="list")
+def list_notes():
+    """List the configured notes directory and its Markdown notes."""
+    directory = _notes_directory()
+    click.echo(f"Notes: {directory}")
+    for number, path in enumerate(_note_files(), start=1):
+        click.echo(f"{number}. {path.name}")
+
+
+@main.command()
+@click.argument("number", type=click.IntRange(min=1))
+def show(number):
+    """Print note NUMBER from the list."""
+    notes = _note_files()
+    if not notes:
+        raise click.ClickException(f"No notes found in {_notes_directory()}")
+    if number > len(notes):
+        raise click.ClickException(
+            f"Note {number} does not exist; choose 1-{len(notes)}"
+        )
+    try:
+        content = notes[number - 1].read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as error:
+        raise click.ClickException(f"Could not read note: {error}") from error
+    click.echo(content, nl=False)
+
+
+if __name__ == "__main__":
+    main()
