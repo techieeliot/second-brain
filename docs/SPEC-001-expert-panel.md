@@ -97,12 +97,20 @@ workflows.
 Thibault is confirmed as leading Codex.
 
 #### 3. Philipp Acsany — Agentic Workflows and Instruction
-Primary lens for developer interactions with AI tools, Claude Code workflows, and educational clarity.
-- Optimize codebase patterns for interactive agent environments and developer velocity.
-- Ensure code examples and tutorials maintain high pedagogical value and universal accessibility.
-- Verify that repository structures are easily parsed by both human learners and LLM context windows.
-- Balance algorithmic optimization with readability to prevent cognitive overload for developers.
-- Check that automated pipelines do not introduce fragile styling or design regressions.
+
+Primary lens for developer interactions with AI tools, Claude Code workflows,
+and educational clarity.
+
+- Optimize codebase patterns for interactive agent environments and developer
+  velocity.
+- Ensure code examples and tutorials maintain high pedagogical value and
+  universal accessibility.
+- Verify that repository structures are easily parsed by human learners and
+  LLM context windows.
+- Balance algorithmic optimization with readability to prevent cognitive
+  overload for developers.
+- Check that automated pipelines do not introduce fragile styling or design
+  regressions.
 
 ### MkDocs
 

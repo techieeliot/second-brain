@@ -16,24 +16,36 @@ page and is the only navigation entry-point exception.
 ```mermaid
 flowchart LR
     subgraph Package["src/second_brain/"]
-        Init["__init__.py<br/>Package marker"]
-        MainModule["__main__.py<br/>python -m entry point"]
-        App["app.py"]
-        MainFn["main()<br/>Click command group"]
-        NewFn["new(thought)"]
-        ListFn["list_notes()"]
-        ShowFn["show(number)"]
-        DirFn["_notes_directory()"]
-        FilesFn["_note_files()"]
-        SlugFn["_slugify(text)"]
-        WriteFn["_write_note(directory, text)"]
-        LogFn["configure_logging()"]
-        FormatFn["_compact_log_format(record)"]
+        direction LR
+        subgraph Entry["Entry points"]
+            Init["__init__.py<br/>package marker"]
+            MainModule["__main__.py<br/>python -m"]
+        end
+
+        subgraph AppFile["app.py"]
+            direction LR
+            subgraph CLI["CLI commands"]
+                MainFn["main()<br/>Click group"]
+                NewFn["new(thought)"]
+                ListFn["list_notes()"]
+                ShowFn["show(number)"]
+            end
+
+            subgraph Storage["Note storage"]
+                DirFn["_notes_directory()"]
+                FilesFn["_note_files()"]
+                SlugFn["_slugify(text)"]
+                WriteFn["_write_note()"]
+            end
+
+            subgraph Logging["Logging"]
+                LogFn["configure_logging()"]
+                FormatFn["_compact_log_format()"]
+            end
+        end
     end
 
     MainModule -->|imports and calls| MainFn
-    Init -.->|marks package| App
-    App --> MainFn
     MainFn --> NewFn
     MainFn --> ListFn
     MainFn --> ShowFn
@@ -47,17 +59,18 @@ flowchart LR
     FilesFn -->|sorts *.md| Notes
     LogFn --> FormatFn
 
-    Click[("Click")] -.->|decorates CLI| MainFn
+    Init -.->|package marker| AppFile
+    Click[("Click")] -.->|decorates| MainFn
     Dotenv[("python-dotenv")] -.->|loads .env| MainFn
-    Loguru[("Loguru")] -.->|console + file sinks| LogFn
-    Stdlib[("Python stdlib<br/>re · pathlib · datetime · sys")] -.-> App
+    Loguru[("Loguru")] -.->|sinks| LogFn
+    Stdlib[("stdlib<br/>re · pathlib · datetime · sys")] -.-> AppFile
 ```
 
 ## 2. Entry points and arguments
 
 ```mermaid
 flowchart LR
-    Console["second_brain ..."] --> Script["pyproject.toml<br/>second_brain = second_brain.app:main"]
+    Console["second_brain"] --> Script["pyproject.toml<br/>entry point"]
     Module["python -m second_brain"] --> MainModule["__main__.py"]
     MainModule --> Group["main()<br/>Click group"]
     Script --> Group
@@ -71,7 +84,7 @@ flowchart LR
     List --> ListFn["list_notes()<br/>print path + numbering"]
     Show --> ShowFn["show(number)<br/>print note content"]
 
-    Env[".env / environment<br/>SECOND_BRAIN_NOTES_DIR"] --> Config["_notes_directory()"]
+    Env[".env<br/>SECOND_BRAIN_NOTES_DIR"] --> Config["_notes_directory()"]
     Config --> NewFn
     Config --> ListFn
     Config --> ShowFn
@@ -81,9 +94,9 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    Thought["💭 User has an idea"] --> NewCmd["second_brain new<br/>&quot;My brilliant idea&quot;"]
+    Thought["💭 thought"] --> NewCmd["new<br/>&quot;My idea&quot;"]
     NewCmd --> LoadEnv["Load .env<br/>resolve notes directory"]
-    LoadEnv --> Create["Create timestamped filename<br/>and write plain Markdown"]
+    LoadEnv --> Create["timestamped .md file<br/>plain Markdown"]
     Create --> Saved[("~/second_brain/<br/>note.md")]
 
     Saved --> ListCmd["second_brain list"]
