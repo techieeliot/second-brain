@@ -1,0 +1,22 @@
+{
+  "name": "second-brain-workspace",
+  "private": true,
+  "packageManager": "yarn@1.22.22",
+  "workspaces": [
+    "src/*"
+  ],
+  "scripts": {
+    "frontend:dev": "yarn --cwd src/frontend dev --turbopack",
+    "frontend:lint": "yarn --cwd src/frontend lint",
+    "frontend:build": "yarn --cwd src/frontend build",
+    "studio:dev": "yarn --cwd src/studio dev",
+    "studio:build": "yarn --cwd src/studio build",
+    "studio:lint": "yarn --cwd src/studio lint",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.8"
+  }
+}

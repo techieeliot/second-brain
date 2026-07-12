@@ -1,4 +1,4 @@
-# Project Agent Instructions
+# Repository Guidelines
 
 This file is the canonical entry point for AI agents working in `second-brain`.
 
@@ -18,12 +18,43 @@ reviews.
 ## Repository Structure
 
 - `src/second_brain/` contains runtime Python code.
+- `src/frontend/` contains the Next.js 16 dashboard and registry components.
+- `src/studio/` contains the Sanity Studio and note schema definitions.
 - `tests/` contains pytest tests.
 - `docs/` contains published documentation and standards.
 - `raw/` contains immutable source material during ingest.
 - `wiki/` contains synthesized, interlinked knowledge.
 - `README.md` is the canonical user and contributor guide.
 - `pyproject.toml` and `uv.lock` define the project and resolved environment.
+- `package.json`, `turbo.json`, and `yarn.lock` define the JavaScript workspace.
+
+## JavaScript Workspace
+
+Use Yarn from the repository root. Turborepo coordinates the two apps:
+
+```bash
+yarn dev              # Start Next.js/Turbopack and Sanity Studio
+yarn lint             # Lint both JavaScript apps
+yarn build            # Build the frontend and Studio
+yarn frontend:dev    # Start only the Next.js dashboard
+yarn studio:dev      # Start only Sanity Studio on port 3333
+```
+
+The frontend uses the App Router under `src/frontend/src/app`, shadcn/ui
+primitives under `src/frontend/src/components/ui`, and product compositions
+under `src/frontend/src/components/registry`. Keep the matte-black theme and
+accessible interactive behavior consistent with existing components. Next.js
+development uses Turbopack; review the local Next guidance in
+`src/frontend/AGENTS.md` before changing framework code.
+
+The Studio keeps `sanity.config.ts` and `sanity.cli.ts` at its root, with
+custom schemas under `src/studio/src/schemaTypes/`. Set
+`SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` in a local environment
+file before connecting to Content Lake. Do not commit credentials.
+
+The root `.mcp.json` registers Next DevTools and Sanity MCP. MCP access may
+inspect live applications, but content mutations, deployments, DNS changes,
+and other external writes require explicit user authorization.
 
 ## Knowledge Workflow
 
@@ -84,3 +115,21 @@ git status --short
 ```
 
 Report commands not run and explain why.
+
+For JavaScript changes, also run:
+
+```bash
+yarn lint
+yarn build
+```
+
+For UI changes, verify the affected route locally and check keyboard focus,
+tooltips, notifications, responsive layout, and dark-theme contrast.
+
+## Commits and Pull Requests
+
+Use concise imperative commit subjects, for example `Add note CLI` or
+`Refactor flowcharts`. Keep pull requests focused, describe user-visible
+behavior, link related issues, list verification commands, and include a
+screenshot for meaningful UI changes. Never merge a pull request as part of a
+review task unless the user explicitly requests the merge.

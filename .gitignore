@@ -11,6 +11,19 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+
+# The Python `lib/` rule above must not hide frontend source utilities.
+!src/frontend/src/lib/
+!src/frontend/src/lib/**
+
+# Explicit app-local generated output
+/src/frontend/node_modules/
+/src/frontend/.next/
+/src/frontend/.turbo/
+/src/studio/node_modules/
+/src/studio/dist/
+/src/studio/.sanity/
+/src/studio/.turbo/
 downloads/
 eggs/
 .eggs/
@@ -197,3 +210,9 @@ htmlcov/
 
 # LLM Wiki local assets
 raw/assets/
+
+# JavaScript workspace artifacts
+node_modules/
+.next/
+.turbo/
+dist/
