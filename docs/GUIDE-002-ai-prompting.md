@@ -29,16 +29,16 @@ A strong task contains six parts:
 
 ## Project Sources of Truth
 
-| Concern | Read first |
-| --- | --- |
-| Knowledge ingest, query, or lint | `AGENTS.md`, then `wiki/index.md` |
-| Raw source processing | `AGENTS.md` and the complete source under `raw/` |
-| Python behavior and entry points | `pyproject.toml`, `src/second_brain/`, and `tests/` |
-| Installation, execution, and logging | Root `README.md` |
-| Public API | `docs/REF-001-api-reference.md` and Python docstrings |
-| Documentation changes | `docs/GUIDE-004-docs-standards.md` and `mkdocs.yml` |
-| Code review | `docs/GUIDE-003-code-review.md` |
-| Significant expert review | `docs/SPEC-001-expert-panel.md` |
+- **Knowledge ingest, query, or lint:** `AGENTS.md`, then `wiki/index.md`.
+- **Raw source processing:** `AGENTS.md` and the complete source under `raw/`.
+- **Python behavior and entry points:** `pyproject.toml`,
+  `src/second_brain/`, and `tests/`.
+- **Installation, execution, and logging:** root `README.md`.
+- **Public API:** `docs/REF-001-api-reference.md` and Python docstrings.
+- **Documentation changes:** `docs/GUIDE-004-docs-standards.md` and
+  `mkdocs.yml`.
+- **Code review:** `docs/GUIDE-003-code-review.md`.
+- **Significant expert review:** `docs/SPEC-001-expert-panel.md`.
 
 If sources disagree, require the agent to identify the conflict and verify
 behavior before editing.

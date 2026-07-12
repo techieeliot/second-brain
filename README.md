@@ -61,7 +61,7 @@ uv run mkdocs build
 ## Project Wiki
 
 - [Documentation home](docs/index.md)
-- [Getting Started](docs/getting-started.md)
+- [Getting Started](docs/GUIDE-001-getting-started.md)
 - [API reference](docs/REF-001-api-reference.md)
 - [Documentation standards](docs/GUIDE-004-docs-standards.md)
 - [AI prompting standards](docs/GUIDE-002-ai-prompting.md)
